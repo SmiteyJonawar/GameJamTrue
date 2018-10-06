@@ -25,6 +25,9 @@ public class CombatScreen implements Screen {
         batch = new SpriteBatch();
         world = new World();
         Mission.StartMissionOne(world);
+        for (Enemy e: world.getEnemyList()) {
+            e.setWorld(world);
+        }
         System.out.println(world);
         gameRunning = true;
         uiDrawer = new UIDrawer(world);
@@ -44,6 +47,9 @@ public class CombatScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+        if(world.getPlayer().isAttacking()){
+
+        }
         if (gameRunning) {
             if (world.getEnemyList().size() > 0) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
@@ -62,38 +68,39 @@ public class CombatScreen implements Screen {
                     fireWeapon(NUM_1);
                 }
             }
+            batch.begin();
+            world.getPlayer().render(batch);
+
+            for (Enemy e: world.getEnemyList()){
+                e.render(batch);
+                e.updateProcess();
+            }
 
 
+
+            batch.end();
+
+
+
+            updateEntities();
         }
-
-
-        updateEntities();
-
-        batch.begin();
-        world.getPlayer().render(batch);
-
-        for (Enemy e : world.getEnemyList()) {
-            e.render(batch);
-        }
-        batch.end();
-
-
     }
 
 
-    private void fireWeapon(int i) {
-        System.out.println("Enemies: " + world.getEnemyList().size());
-        System.out.println(world.getEnemyList().get(0).getHP());
-        System.out.println(world.getPlayer().getName());
-        world.getPlayer().fireWeapon(i, world.getEnemyList().get(0));
-        System.out.println("Railgun Fired");
-        System.out.println(world.getEnemyList().get(0).getHP());
+
+    private void fireWeapon(int i){
+            System.out.println("Enemies: " + world.getEnemyList().size());
+            System.out.println(world.getEnemyList().get(0).getHP());
+            System.out.println(world.getPlayer().getName());
+            world.getPlayer().fireWeapon(i, world.getEnemyList().get(0));
+            System.out.println("Railgun Fired");
+            System.out.println(world.getEnemyList().get(0).getHP());
     }
 
-    private void updateEntities() {
-        for (int i = 0; i < world.getEnemyList().size(); i++) {
+    private void updateEntities(){
+        for (int i = 0; i < world.getEnemyList().size(); i++){
             Enemy e = world.getEnemyList().get(i);
-            if (world.getEnemyList().get(i).getHP() <= 0) {
+            if (world.getEnemyList().get(i).getHP() <= 0){
                 world.getEnemyList().remove(e);
                 System.out.println("Enemies: " + world.getEnemyList().size());
             }

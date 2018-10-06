@@ -71,6 +71,11 @@ public class Player extends AbstractShip{
     }
 
     @Override
+    public void attack() {
+
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         sb.draw(texture, this.getPosX() + getWidth(), this.getPosY(), -getWidth(), getHeight());
     }

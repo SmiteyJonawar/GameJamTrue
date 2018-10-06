@@ -8,6 +8,7 @@ public class World {
 
     public World(){
         player = new Player();
+        player.setWorld(this);
         enemyList = new ArrayList<Enemy>();
     }
 

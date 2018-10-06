@@ -65,6 +65,13 @@ public class Enemy extends AbstractShip {
     }
 
     @Override
+    public void attack() {
+        if(!Iventory.isEmpty()){
+            Shoot(Iventory.get(0),world.getPlayer());
+        }
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         sb.draw(texture, this.getPosX(), this.getPosY(), getWidth(), getHeight());
     }

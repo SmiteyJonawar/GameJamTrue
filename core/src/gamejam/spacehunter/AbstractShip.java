@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractShip {
+    protected float processATB = 100;
     protected float HP = 10;
     protected float MaxHP = 10;
     protected float Initiative = 1;
     protected float Speed = 1;
+    protected float process = 0;
     protected List<AbstractCard> Iventory = new ArrayList<AbstractCard>();
     protected boolean Attacking = false;
     protected String Name = "Default";
@@ -21,6 +23,7 @@ public abstract class AbstractShip {
     private float posY;
     private int height;
     private int width;
+    protected World world;
     public Texture texture;
 
     public static int GetID()
@@ -31,6 +34,15 @@ public abstract class AbstractShip {
     public abstract void Shoot(AbstractCard card, AbstractShip target);
 
     public abstract void OnHit(AbstractCard card);
+
+    public void updateProcess(){
+        Initiative += getSpeed();
+        if(Initiative >= processATB){
+            Attacking = true;
+        }
+    }
+
+    public abstract void attack();
 
     public float getHP() {
         return HP;
@@ -126,6 +138,22 @@ public abstract class AbstractShip {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public float getProcess() {
+        return process;
+    }
+
+    public void setProcess(float process) {
+        this.process = process;
+    }
+
+    public float getProcessATB() {
+        return processATB;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 
     public abstract  void render(SpriteBatch sb);
