@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import gamejam.spacehunter.Weapons.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public abstract class AbstractShip {
     private Vector2 position = new Vector2(0,0);
     protected World world;
     private ShipTexture shipTexture;
+    public ArrayList<Weapon> weaponArrayList = new ArrayList<Weapon>();
 
     public static int GetID()
     {

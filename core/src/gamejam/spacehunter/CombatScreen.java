@@ -53,25 +53,26 @@ public class CombatScreen implements Screen {
         if (gameRunning) {
             if (world.getEnemyList().size() > 0) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-                    fireWeapon(NUM_1);
+                    fireWeapon(0);
                 }
 
                 if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-                    fireWeapon(NUM_1);
+                    fireWeapon(1);
                 }
 
                 if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
-                    fireWeapon(NUM_1);
+                    fireWeapon(2);
                 }
 
                 if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
-                    fireWeapon(NUM_1);
+                    fireWeapon(3);
                 }
             }
 
 
         }
 
+        updateEntities();
         drawEntities();
 
     }

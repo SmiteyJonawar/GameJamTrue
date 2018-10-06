@@ -6,11 +6,14 @@ public class Weapon {
     private AbstractCard equippedCard;
     private float posX;
     private float posY;
+    private WeaponTexture weaponTexture;
 
-    public Weapon(AbstractCard card, float x, float y){
+    public Weapon(AbstractCard card, WeaponTexture weaponTexture, float x, float y){
         this.posX = x;
         this.posY = y;
         this.equippedCard = card;
+        this.weaponTexture = weaponTexture;
+
     }
 
     public AbstractCard getEquippedCard() {
@@ -35,5 +38,9 @@ public class Weapon {
 
     public void setPosY(float posY) {
         this.posY = posY;
+    }
+
+    public WeaponTexture getWeaponTexture() {
+        return weaponTexture;
     }
 }

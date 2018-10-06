@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import gamejam.spacehunter.Weapons.Weapon;
+import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
 import gamejam.spacehunter.cards.CannonBlaze;
 import gamejam.spacehunter.cards.LightShower;
@@ -20,7 +21,6 @@ public class Player extends AbstractShip{
 
 
     public HashMap<Integer, AbstractCard> cards = new HashMap<Integer, AbstractCard>();
-    public ArrayList<Weapon> weaponArrayList = new ArrayList<Weapon>();
 
     public Player(){
 
@@ -32,7 +32,6 @@ public class Player extends AbstractShip{
         this.Name = "Space Slayer 69";
         this.Speed = 1;
         this.Attacking = false;
-        fillInventory();
 
         setShipTexture(ShipFactory.createShip("heroShip"));
 
@@ -42,21 +41,14 @@ public class Player extends AbstractShip{
     }
 
     private void createWeapons(){
-        weaponArrayList.add(new Weapon(new Railgun(), 4*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new LightShower(), 4*2*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new LightningBolt(), 4*3*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new CannonBlaze(), 16*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new Railgun(), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new LightShower(), WeaponFactory.createTexture("doubleJimmy"), 4*2*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new LightningBolt(), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new CannonBlaze(), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
     }
 
-    private void fillInventory(){
-        cards.put(Keys.NUM_1, new Railgun());
-        cards.put(Keys.NUM_2, new LightningBolt());
-        cards.put(Keys.NUM_3, new LightShower());
-        cards.put(Keys.NUM_4, new CannonBlaze());
-    }
-
-    public void fireWeapon(int card, AbstractShip target){
-        Shoot(cards.get(card), target);
+    public void fireWeapon(int weapon, AbstractShip target){
+        Shoot(weaponArrayList.get(weapon).getEquippedCard(), target);
     }
 
     @Override
