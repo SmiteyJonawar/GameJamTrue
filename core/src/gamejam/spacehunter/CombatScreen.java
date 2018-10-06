@@ -17,7 +17,6 @@ public class CombatScreen implements Screen {
     SpriteBatch batch;
     World world;
     boolean gameRunning = false;
-    Player player = new Player();
 
     public CombatScreen() {
         batch = new SpriteBatch();
@@ -54,7 +53,7 @@ public class CombatScreen implements Screen {
                 }
             }
             batch.begin();
-            player.render(batch);
+            world.getPlayer().render(batch);
 
             for (Enemy e: world.getEnemyList()){
                 e.render(batch);
