@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
@@ -67,7 +68,8 @@ public class Player extends AbstractShip{
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render(ShapeRenderer sr, SpriteBatch sb) {
+        super.render(sr, sb);
         getShipTexture().render(sb, getPosition(), weaponArrayList, true);
     }
 }

@@ -1,6 +1,7 @@
 package gamejam.spacehunter;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
@@ -27,7 +28,7 @@ public class Enemy extends AbstractShip {
     public static Enemy smallEnemy(ShipTexture ship, int x, int y){
         Enemy e = new Enemy();
         e.setName("Booette");
-        e.setMaxHP(5);
+        e.setMaxHP(50);
         e.setHP(e.getMaxHP());
         e.setSpeed(1);
 
@@ -69,7 +70,8 @@ public class Enemy extends AbstractShip {
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render(ShapeRenderer sr, SpriteBatch sb) {
+        super.render(sr, sb);
         getShipTexture().render(sb, getPosition(), weaponArrayList, false);
     }
 }

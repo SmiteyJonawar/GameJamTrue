@@ -1,8 +1,10 @@
 package gamejam.spacehunter;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import gamejam.spacehunter.Weapons.Weapon;
 
@@ -145,5 +147,19 @@ public abstract class AbstractShip {
         this.shipTexture = shipTexture;
     }
 
-    public abstract  void render(SpriteBatch sb);
+    public void render(ShapeRenderer sr, SpriteBatch sb){
+        sb.end();
+        sr.begin(ShapeRenderer.ShapeType.Filled);
+        int HPWidth = 1000;
+        int HPHeight = 50;
+
+        sr.setColor(Color.RED);
+        sr.rect(position.x + shipTexture.getTexture().getWidth()/2 - HPWidth/2, position.y + HPHeight + 50 + shipTexture.getTexture().getHeight(), HPWidth, HPHeight);
+
+        sr.setColor(Color.GREEN);
+        sr.rect(position.x + shipTexture.getTexture().getWidth()/2 - HPWidth/2, position.y + HPHeight + 50 + shipTexture.getTexture().getHeight(), HPWidth*getHP()/getMaxHP(), HPHeight);
+
+        sr.end();
+        sb.begin();
+    }
 }

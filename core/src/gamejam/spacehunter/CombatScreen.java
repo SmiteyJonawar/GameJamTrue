@@ -6,22 +6,29 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import static com.badlogic.gdx.Input.Keys.NUM_1;
 
 public class CombatScreen implements Screen {
 
     SpriteBatch batch;
+    ShapeRenderer shapeRenderer;
     World world;
     boolean gameRunning = false;
     UIDrawer uiDrawer;
+
+    Texture bg = new Texture(Gdx.files.internal("Background.png"));
 
     public CombatScreen() {
         OrthographicCamera cam = new OrthographicCamera();
         cam.setToOrtho(false, 1280*4, 720*4);
         batch = new SpriteBatch();
         batch.setProjectionMatrix(cam.combined);
+        shapeRenderer = new ShapeRenderer();
+        shapeRenderer.setProjectionMatrix(cam.combined);
         world = new World();
         Mission.StartMissionOne(world);
         for (Enemy e: world.getEnemyList()) {
@@ -80,14 +87,17 @@ public class CombatScreen implements Screen {
 
     private void drawEntities(){
         batch.begin();
-        world.getPlayer().render(batch);
+
+        batch.draw(bg,0,0,1280*4,720*4);
+
+        world.getPlayer().render(shapeRenderer, batch);
 
         for (Enemy e : world.getEnemyList()) {
-            e.render(batch);
+            e.render(shapeRenderer, batch);
             e.updateProcess();
         }
 
-        world.getPlayer().render(batch);
+        world.getPlayer().render(shapeRenderer, batch);
         if (world.getPlayer().weaponArrayList.size() > 0) {
             uiDrawer.drawCards(batch);
         }
