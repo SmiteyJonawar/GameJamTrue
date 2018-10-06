@@ -1,5 +1,7 @@
 package gamejam.spacehunter.cards;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import gamejam.spacehunter.AbstractCard;
 
 public class LightningBolt extends AbstractCard {
@@ -11,6 +13,7 @@ public class LightningBolt extends AbstractCard {
         this.Damage = 20;
         this.Name = "Lightning Bolt";
         this.MultiHit = false;
+        texture = new Texture(Gdx.files.internal("SingleTemplate.png"));
     }
 
 }

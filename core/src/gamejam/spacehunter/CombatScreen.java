@@ -28,6 +28,7 @@ public class CombatScreen implements Screen {
             e.setWorld(world);
         }
         System.out.println(world);
+        System.out.println(world.getPlayer().weaponArrayList.size());
         gameRunning = true;
         uiDrawer = new UIDrawer(world);
 
@@ -79,9 +80,11 @@ public class CombatScreen implements Screen {
 
             batch.end();
 
-
-
-            updateEntities();
+        batch.begin();
+        world.getPlayer().render(batch);
+        if (world.getPlayer().weaponArrayList.size() > 0) {uiDrawer.drawCards(batch);}
+        for (Enemy e : world.getEnemyList()) {
+            e.render(batch);
         }
     }
 
