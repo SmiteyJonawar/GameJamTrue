@@ -20,6 +20,21 @@ public class ShipFactory {
                 add(new Vector2(493,texture.getHeight()-348));
                 add(new Vector2(1352,texture.getHeight()-396));
             }});
+        }else if (name.equals("motherShip")){
+            final Texture texture = new Texture(Gdx.files.internal("Mothership.png"));
+            return new ShipTexture(texture, new ArrayList<Vector2>(){{
+                add(new Vector2(610,texture.getHeight()-156));
+                add(new Vector2(380,texture.getHeight()-753));
+                add(new Vector2(639,texture.getHeight()-1156));
+            }});
+        }else if (name.equals("finalBoss")){
+            final Texture texture = new Texture(Gdx.files.internal("FinalBoss.png"));
+            return new ShipTexture(texture, new ArrayList<Vector2>(){{
+                add(new Vector2(238,texture.getHeight()-128));
+                add(new Vector2(694,texture.getHeight()-129));
+                add(new Vector2(694,texture.getHeight()-528));
+                add(new Vector2(899,texture.getHeight()-312));
+            }});
         }
 
         throw new IllegalArgumentException("Ship does not exist!");
