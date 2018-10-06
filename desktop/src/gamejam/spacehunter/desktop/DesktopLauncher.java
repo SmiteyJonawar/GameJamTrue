@@ -11,6 +11,5 @@ public class DesktopLauncher {
 		config.height = 720;
 		config.title = "Space Hunter";
 		new LwjglApplication(new Main(), config);
-
 	}
 }

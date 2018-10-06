@@ -1,5 +1,8 @@
 package gamejam.spacehunter;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,7 @@ public abstract class AbstractShip {
     protected String Name = "Default";
     private static int IDCounter = 200;
     protected int ID = 0;
+    public Texture texture;
 
     public static int GetID()
     {
@@ -87,4 +91,5 @@ public abstract class AbstractShip {
         this.ID = ID;
     }
 
+    public abstract  void render(SpriteBatch sb);
 }

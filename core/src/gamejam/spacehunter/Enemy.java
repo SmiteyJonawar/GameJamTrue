@@ -1,5 +1,7 @@
 package gamejam.spacehunter;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 public class Enemy extends AbstractShip {
@@ -32,5 +34,10 @@ public class Enemy extends AbstractShip {
     @Override
     public void OnHit(AbstractCard card) {
         this.HP -= card.Damage;
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+
     }
 }

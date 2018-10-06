@@ -1,8 +1,11 @@
 package gamejam.spacehunter;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import gamejam.spacehunter.cards.CannonBlaze;
 import gamejam.spacehunter.cards.LightShower;
 import gamejam.spacehunter.cards.LightningBolt;
@@ -28,7 +31,7 @@ public class Player extends AbstractShip{
         this.Speed = 1;
         this.Attacking = false;
         fillInventory();
-
+        texture = new Texture(Gdx.files.internal("HeroShip.png"));
     }
 
     private void fillInventory(){
@@ -50,5 +53,12 @@ public class Player extends AbstractShip{
     @Override
     public void OnHit(AbstractCard card) {
         this.HP -= card.Damage;
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        {
+            sb.draw(texture, 400, 10, -texture.getWidth()/4, texture.getHeight()/4);
+        }
     }
 }

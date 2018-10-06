@@ -14,6 +14,7 @@ public class CombatScreen implements Screen {
     SpriteBatch batch;
     World world;
     boolean gameRunning = false;
+    Player player = new Player();
 
     public CombatScreen() {
         batch = new SpriteBatch();
@@ -49,6 +50,9 @@ public class CombatScreen implements Screen {
                     fireWeapon(NUM_1);
                 }
             }
+            batch.begin();
+            player.render(batch);
+            batch.end();
             updateEntities();
         }
     }
