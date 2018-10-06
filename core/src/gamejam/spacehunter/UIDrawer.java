@@ -1,5 +1,6 @@
 package gamejam.spacehunter;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import gamejam.spacehunter.Weapons.Weapon;
 
@@ -14,7 +15,8 @@ public class UIDrawer {
     public void drawCards(SpriteBatch batch){
 
         for (Weapon w: world.getPlayer().weaponArrayList) {
-            batch.draw(w.getEquippedCard().texture, w.getPosX(), w.getPosY(), 1280/8, 90);
+            Texture texture =  w.getEquippedCard().texture;
+            batch.draw(w.getEquippedCard().tr, w.getPosX(), w.getPosY(), 0.5f*texture.getWidth(), 0.5f*texture.getHeight());
         }
     }
 }

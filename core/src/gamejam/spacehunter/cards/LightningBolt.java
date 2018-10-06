@@ -14,6 +14,7 @@ public class LightningBolt extends AbstractCard {
         this.Name = "Lightning Bolt";
         this.MultiHit = false;
         texture = new Texture(Gdx.files.internal("SingleTemplate.png"));
+        this.tr = makeTextureRegion();
     }
 
 }

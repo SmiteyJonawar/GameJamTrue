@@ -42,10 +42,10 @@ public class Player extends AbstractShip{
     }
 
     private void createWeapons(){
-        weaponArrayList.add(new Weapon(new Railgun(), Gdx.graphics.getWidth()/6, Gdx.graphics.getHeight()/4));
-        weaponArrayList.add(new Weapon(new LightShower(), 2*Gdx.graphics.getWidth()/6, Gdx.graphics.getHeight()/4));
-        weaponArrayList.add(new Weapon(new LightningBolt(), 3*Gdx.graphics.getWidth()/6, Gdx.graphics.getHeight()/4));
-        weaponArrayList.add(new Weapon(new CannonBlaze(), 4*Gdx.graphics.getWidth()/6, Gdx.graphics.getHeight()/4));
+        weaponArrayList.add(new Weapon(new Railgun(), 4*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new LightShower(), 4*2*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new LightningBolt(), 4*3*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new CannonBlaze(), 16*Gdx.graphics.getWidth()/6, 100));
     }
 
     private void fillInventory(){

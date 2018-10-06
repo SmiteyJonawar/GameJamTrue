@@ -47,7 +47,7 @@ public class CombatScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-        if(world.getPlayer().isAttacking()){
+        if (world.getPlayer().isAttacking()) {
 
         }
         if (gameRunning) {
@@ -68,24 +68,29 @@ public class CombatScreen implements Screen {
                     fireWeapon(NUM_1);
                 }
             }
-            batch.begin();
-            world.getPlayer().render(batch);
-
-            for (Enemy e: world.getEnemyList()){
-                e.render(batch);
-                e.updateProcess();
-            }
 
 
+        }
 
-            batch.end();
+        drawEntities();
 
+    }
+
+
+    private void drawEntities(){
         batch.begin();
         world.getPlayer().render(batch);
-        if (world.getPlayer().weaponArrayList.size() > 0) {uiDrawer.drawCards(batch);}
+
         for (Enemy e : world.getEnemyList()) {
             e.render(batch);
+            e.updateProcess();
         }
+
+        world.getPlayer().render(batch);
+        if (world.getPlayer().weaponArrayList.size() > 0) {
+            uiDrawer.drawCards(batch);
+        }
+        batch.end();
     }
 
 

@@ -15,5 +15,6 @@ public class CannonBlaze extends AbstractCard {
         this.Name = "Cannon Blaze";
         this.MultiHit = false;
         texture = new Texture(Gdx.files.internal("SingleTemplate.png"));
+        this.tr = makeTextureRegion();
     }
 }
