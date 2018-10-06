@@ -9,10 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
-import gamejam.spacehunter.cards.CannonBlaze;
-import gamejam.spacehunter.cards.LightShower;
-import gamejam.spacehunter.cards.LightningBolt;
-import gamejam.spacehunter.cards.Railgun;
+import gamejam.spacehunter.cards.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +17,8 @@ import java.util.List;
 
 public class Player extends AbstractShip{
 
-
+    public AbstractCard card;
+    public AbstractShip target;
     public HashMap<Integer, AbstractCard> cards = new HashMap<Integer, AbstractCard>();
 
     public Player(){
@@ -42,19 +40,32 @@ public class Player extends AbstractShip{
     }
 
     private void createWeapons(){
-        weaponArrayList.add(new Weapon(new Railgun(), WeaponFactory.createTexture("flashCannon"), 4*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new LightShower(), WeaponFactory.createTexture("flashCannon"), 4*2*Gdx.graphics.getWidth()/6, 100));
-        //weaponArrayList.add(new Weapon(new LightningBolt(), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
-        //weaponArrayList.add(new Weapon(new CannonBlaze(), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.BigBertha), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Blaster), WeaponFactory.createTexture("doubleJimmy"), 4*2*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleBlaster), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleJimmy), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
     }
 
     public void fireWeapon(int weapon, AbstractShip target){
-        Shoot(weaponArrayList.get(weapon).getEquippedCard(), target);
+        this.card = weaponArrayList.get(weapon).getEquippedCard();
+        this.target = target;
+        readyToAttack = false;
+        setAttacking(true);
+    }
+
+    public void fireIfReady(){
+        card.charge();
+        if(card.fullyCharged()){
+            Shoot(card,target);
+        }
     }
 
     @Override
     public void Shoot(AbstractCard card, AbstractShip target) {
-            target.setHP(target.getHP()-card.Damage);
+        target.setHP(target.getHP()-card.Damage);
+        setInitiative(0);
+        readyToAttack = false;
+        setAttacking(false);
     }
 
     @Override

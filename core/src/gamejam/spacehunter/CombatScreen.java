@@ -31,7 +31,7 @@ public class CombatScreen implements Screen {
         shapeRenderer.setProjectionMatrix(cam.combined);
         world = new World();
         Mission.StartMissionOne(world);
-        for (Enemy e: world.getEnemyList()) {
+        for (Enemy e : world.getEnemyList()) {
             e.setWorld(world);
         }
         System.out.println(world);
@@ -53,11 +53,7 @@ public class CombatScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
-        if (world.getPlayer().isAttacking()) {
-
-        }
-        if (gameRunning) {
+        if (world.getPlayer().readyToAttack && !world.getPlayer().isAttacking()) {
             if (world.getEnemyList().size() > 0) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
                     fireWeapon(0);
@@ -75,16 +71,32 @@ public class CombatScreen implements Screen {
                     fireWeapon(3);
                 }
             }
-
+        }  if (world.getPlayer().isAttacking()) {
+            world.getPlayer().fireIfReady();
 
         }
+        if (gameRunning && !world.getPlayer().readyToAttack) {
 
+            world.getPlayer().updateProcess();
+            for (Enemy e : world.getEnemyList()) {
+                if (e.isReadyToAttack()) {
+                    e.attack();
+                } else {
+                    e.updateProcess();
+                }
+
+            }
+
+        }
+        batch.begin();
+        for (Enemy e: world.getEnemyList()) {
+            e.render(batch);
+        }
+        world.getPlayer().render(batch);
+        batch.end();
         updateEntities();
         drawEntities();
-
     }
-
-
     private void drawEntities(){
         batch.begin();
 
@@ -111,7 +123,7 @@ public class CombatScreen implements Screen {
             System.out.println(world.getEnemyList().get(0).getHP());
             System.out.println(world.getPlayer().getName());
             world.getPlayer().fireWeapon(i, world.getEnemyList().get(0));
-            System.out.println("Railgun Fired");
+            System.out.println(world.getPlayer().weaponArrayList.get(i).getEquippedCard().Name + " fired.");
             System.out.println(world.getEnemyList().get(0).getHP());
     }
 

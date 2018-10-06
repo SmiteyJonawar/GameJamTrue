@@ -20,6 +20,7 @@ public abstract class AbstractShip {
     protected float process = 0;
     protected List<AbstractCard> Iventory = new ArrayList<AbstractCard>();
     protected boolean Attacking = false;
+    protected boolean readyToAttack = false;
     protected String Name = "Default";
     private static int IDCounter = 200;
     protected int ID = 0;
@@ -40,7 +41,8 @@ public abstract class AbstractShip {
     public void updateProcess(){
         Initiative += getSpeed();
         if(Initiative >= processATB){
-            Attacking = true;
+            readyToAttack = true;
+            attack();
         }
     }
 
@@ -49,7 +51,6 @@ public abstract class AbstractShip {
     public float getHP() {
         return HP;
     }
-
 
     public void setHP(float HP) {
         this.HP = HP;
@@ -137,6 +138,14 @@ public abstract class AbstractShip {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public boolean isReadyToAttack() {
+        return readyToAttack;
+    }
+
+    public void setReadyToAttack(boolean readyToAttack) {
+        this.readyToAttack = readyToAttack;
     }
 
     public ShipTexture getShipTexture() {

@@ -13,8 +13,7 @@ public class LightningBolt extends AbstractCard {
         this.Damage = 20;
         this.Name = "Lightning Bolt";
         this.MultiHit = false;
-        texture = new Texture(Gdx.files.internal("SingleTemplate.png"));
-        this.tr = makeTextureRegion();
+        cardTexture = new Texture(Gdx.files.internal("SingleTemplate.png"));
     }
 
 }

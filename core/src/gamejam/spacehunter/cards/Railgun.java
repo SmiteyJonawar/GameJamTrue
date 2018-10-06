@@ -14,8 +14,7 @@ public class Railgun extends AbstractCard {
         this.Damage = 15;
         this.Name = "Railgun";
         this.MultiHit = false;
-        texture = new Texture(Gdx.files.internal("SingleTemplate.png"));
-        this.tr = makeTextureRegion();
+        cardTexture = new Texture(Gdx.files.internal("SingleTemplate.png"));
 
     }
 }

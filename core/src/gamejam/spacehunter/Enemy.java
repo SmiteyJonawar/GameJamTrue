@@ -42,8 +42,8 @@ public class Enemy extends AbstractShip {
     }
 
     public Enemy(){
-        this.MaxHP = 5;
-        this.HP = 5;
+        this.MaxHP = 50;
+        this.HP = 50;
         this.ID = AbstractShip.GetID();
         this.Initiative = 0;
         this.Iventory = new ArrayList<AbstractCard>();
