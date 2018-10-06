@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractShip {
-    public float HP = 10;
-    public float MaxHP = 10;
-    public float Initiative = 1;
-    public float Speed = 1;
-    public List<AbstractCard> Iventory = new ArrayList<AbstractCard>();
-    public boolean Attacking = false;
-    public String Name = "Default";
+    protected float HP = 10;
+    protected float MaxHP = 10;
+    protected float Initiative = 1;
+    protected float Speed = 1;
+    protected List<AbstractCard> Iventory = new ArrayList<AbstractCard>();
+    protected boolean Attacking = false;
+    protected String Name = "Default";
     private static int IDCounter = 200;
-    public int ID = 0;
+    protected int ID = 0;
 
     public static int GetID()
     {
@@ -22,5 +22,69 @@ public abstract class AbstractShip {
     public abstract void Shoot(AbstractCard card, AbstractShip target);
 
     public abstract void OnHit(AbstractCard card);
+
+    public float getHP() {
+        return HP;
+    }
+
+    public void setHP(float HP) {
+        this.HP = HP;
+    }
+
+    public float getMaxHP() {
+        return MaxHP;
+    }
+
+    public void setMaxHP(float maxHP) {
+        MaxHP = maxHP;
+    }
+
+    public float getInitiative() {
+        return Initiative;
+    }
+
+    public void setInitiative(float initiative) {
+        Initiative = initiative;
+    }
+
+    public float getSpeed() {
+        return Speed;
+    }
+
+    public void setSpeed(float speed) {
+        Speed = speed;
+    }
+
+    public List<AbstractCard> getIventory() {
+        return Iventory;
+    }
+
+    public void setIventory(List<AbstractCard> iventory) {
+        Iventory = iventory;
+    }
+
+    public boolean isAttacking() {
+        return Attacking;
+    }
+
+    public void setAttacking(boolean attacking) {
+        Attacking = attacking;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
 }
