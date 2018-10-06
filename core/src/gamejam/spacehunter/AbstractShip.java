@@ -46,11 +46,6 @@ public abstract class AbstractShip {
         return HP;
     }
 
-    protected TextureRegion makeTextureRegion() {
-        TextureRegion tr = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
-        //tr.flip(false, true);
-        return tr;
-    }
 
     public void setHP(float HP) {
         this.HP = HP;
