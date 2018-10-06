@@ -11,8 +11,8 @@ public class AbstractCard {
     public float Cooldown;
     public boolean MultiHit;
     public String Name;
-    public Texture texture;
-    public TextureRegion tr;
+    public Texture cardTexture;
+    public Texture weaponTexture;
 
     private static int IdCounter = 100;
 

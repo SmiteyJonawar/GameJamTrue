@@ -107,13 +107,14 @@ public class CombatScreen implements Screen {
     }
 
 
-    private void fireWeapon(int i) {
-        System.out.println("Enemies: " + world.getEnemyList().size());
-        System.out.println(world.getEnemyList().get(0).getHP());
-        System.out.println(world.getPlayer().getName());
-        world.getPlayer().fireWeapon(i, world.getEnemyList().get(0));
-        System.out.println("Railgun Fired");
-        System.out.println(world.getEnemyList().get(0).getHP());
+
+    private void fireWeapon(int i){
+            System.out.println("Enemies: " + world.getEnemyList().size());
+            System.out.println(world.getEnemyList().get(0).getHP());
+            System.out.println(world.getPlayer().getName());
+            world.getPlayer().fireWeapon(i, world.getEnemyList().get(0));
+            System.out.println(world.getPlayer().weaponArrayList.get(i).getEquippedCard().Name + " fired.");
+            System.out.println(world.getEnemyList().get(0).getHP());
     }
 
     private void updateEntities(){
