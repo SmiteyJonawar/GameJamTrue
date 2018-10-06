@@ -62,17 +62,15 @@ public class CombatScreen implements Screen {
                     fireWeapon(NUM_1);
                 }
             }
-            batch.begin();
-            world.getPlayer().render(batch);
 
-            }
 
         }
+
 
         updateEntities();
 
         batch.begin();
-        player.render(batch);
+        world.getPlayer().render(batch);
 
         for (Enemy e : world.getEnemyList()) {
             e.render(batch);
