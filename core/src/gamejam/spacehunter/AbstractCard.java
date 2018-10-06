@@ -35,10 +35,4 @@ public class AbstractCard {
         currentTime+=0.05f;
     }
 
-    protected TextureRegion makeTextureRegion() {
-        TextureRegion tr = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
-        //tr.flip(false, true);
-        return tr;
-    }
-
 }

@@ -88,12 +88,7 @@ public class CombatScreen implements Screen {
             }
 
         }
-        batch.begin();
-        for (Enemy e: world.getEnemyList()) {
-            e.render(batch);
-        }
-        world.getPlayer().render(batch);
-        batch.end();
+
         updateEntities();
         drawEntities();
     }

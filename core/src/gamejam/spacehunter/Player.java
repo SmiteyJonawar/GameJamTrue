@@ -42,8 +42,8 @@ public class Player extends AbstractShip{
     private void createWeapons(){
         weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.BigBertha), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
         weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Blaster), WeaponFactory.createTexture("doubleJimmy"), 4*2*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleBlaster), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleJimmy), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
+        //weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleBlaster), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
+        //weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleJimmy), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
     }
 
     public void fireWeapon(int weapon, AbstractShip target){
