@@ -9,11 +9,32 @@ import java.util.List;
 
 public class ShipTexture {
 
-    Texture shipTexture;
-    List<Vector2> ConnectionPoints;
+    private Texture shipTexture;
+    private List<Vector2> connectionPoints;
 
-    public void render(SpriteBatch sb, List<WeaponTexture> weaponTextures){
+    private Vector2 workVector = new Vector2();
 
+    public ShipTexture(Texture texture, List<Vector2> connectionPoints){
+        shipTexture = texture;
+        this.connectionPoints = connectionPoints;
+    }
+
+    public void render(SpriteBatch sb, Vector2 pos, List<WeaponTexture> weaponTextures, boolean flipped){
+
+        if (weaponTextures.size() > connectionPoints.size()){
+            throw new IllegalArgumentException("More weapons than connection points!");
+        }
+
+        if (flipped) {
+            sb.draw(shipTexture, pos.x, pos.y, shipTexture.getWidth(), shipTexture.getHeight());
+        }else {
+            sb.draw(shipTexture, pos.x + shipTexture.getWidth(), pos.y, -shipTexture.getWidth(), shipTexture.getHeight());
+        }
+
+        for (int i = 0; i < weaponTextures.size(); i++) {
+            WeaponTexture weaponTexture = weaponTextures.get(i);
+            weaponTexture.render(sb, workVector.set(pos).add(connectionPoints.get(i)), flipped);
+        }
     }
 
 }

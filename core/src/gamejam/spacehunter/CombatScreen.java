@@ -5,12 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import java.rmi.server.UID;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.badlogic.gdx.Input.Keys.NUM_1;
 
@@ -22,7 +18,10 @@ public class CombatScreen implements Screen {
     UIDrawer uiDrawer;
 
     public CombatScreen() {
+        OrthographicCamera cam = new OrthographicCamera();
+        cam.setToOrtho(true, 1280*4, 720*4);
         batch = new SpriteBatch();
+        batch.setProjectionMatrix(cam.combined);
         world = new World();
         Mission.StartMissionOne(world);
         for (Enemy e: world.getEnemyList()) {
