@@ -2,10 +2,11 @@ package gamejam.spacehunter;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponTexture;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShipTexture {
@@ -24,7 +25,7 @@ public class ShipTexture {
         return shipTexture;
     }
 
-    public void render(SpriteBatch sb, Vector2 pos, List<WeaponTexture> weaponTextures, boolean flipped){
+    public void render(SpriteBatch sb, Vector2 pos, ArrayList<Weapon> weaponTextures, boolean flipped){
 
         if (weaponTextures.size() > connectionPoints.size()){
             throw new IllegalArgumentException("More weapons than connection points!");
@@ -36,9 +37,16 @@ public class ShipTexture {
             sb.draw(shipTexture, pos.x + shipTexture.getWidth(), pos.y, -shipTexture.getWidth(), shipTexture.getHeight());
         }
 
-        for (int i = 0; i < weaponTextures.size(); i++) {
-            WeaponTexture weaponTexture = weaponTextures.get(i);
-            weaponTexture.render(sb, workVector.set(pos).add(connectionPoints.get(i)), flipped);
+        if (!flipped){
+            for (int i = 0; i < weaponTextures.size(); i++) {
+                WeaponTexture weaponTexture = weaponTextures.get(i).getWeaponTexture();
+                weaponTexture.render(sb, workVector.set(pos).add(connectionPoints.get(i)), false);
+            }
+        }else {
+            for (int i = 0; i < weaponTextures.size(); i++) {
+                WeaponTexture weaponTexture = weaponTextures.get(i).getWeaponTexture();
+                weaponTexture.render(sb, workVector.set(pos).add(connectionPoints.get(i)).add(shipTexture.getWidth() - connectionPoints.get(i).x * 2, 0), true);
+            }
         }
     }
 

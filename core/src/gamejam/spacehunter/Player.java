@@ -41,10 +41,10 @@ public class Player extends AbstractShip{
     }
 
     private void createWeapons(){
-        weaponArrayList.add(new Weapon(new Railgun(), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new LightShower(), WeaponFactory.createTexture("doubleJimmy"), 4*2*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new LightningBolt(), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(new CannonBlaze(), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new Railgun(), WeaponFactory.createTexture("flashCannon"), 4*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(new LightShower(), WeaponFactory.createTexture("flashCannon"), 4*2*Gdx.graphics.getWidth()/6, 100));
+        //weaponArrayList.add(new Weapon(new LightningBolt(), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
+        //weaponArrayList.add(new Weapon(new CannonBlaze(), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
     }
 
     public void fireWeapon(int weapon, AbstractShip target){
@@ -66,9 +66,8 @@ public class Player extends AbstractShip{
 
     }
 
-    List<WeaponTexture> empty = new ArrayList<WeaponTexture>();
     @Override
     public void render(SpriteBatch sb) {
-        getShipTexture().render(sb, getPosition(), empty, true);
+        getShipTexture().render(sb, getPosition(), weaponArrayList, true);
     }
 }

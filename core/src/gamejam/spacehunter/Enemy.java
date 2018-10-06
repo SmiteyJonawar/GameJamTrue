@@ -1,6 +1,8 @@
 package gamejam.spacehunter;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import gamejam.spacehunter.Weapons.Weapon;
+import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
 
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public class Enemy extends AbstractShip {
 
         e.setPosition(x, y);
 
+        e.weaponArrayList.add(new Weapon(null, WeaponFactory.createTexture("flashCannon"), 0, 0));
+
         return e;
     }
 
@@ -64,10 +68,8 @@ public class Enemy extends AbstractShip {
         }
     }
 
-    List<WeaponTexture> empty = new ArrayList<WeaponTexture>();
-
     @Override
     public void render(SpriteBatch sb) {
-        getShipTexture().render(sb, getPosition(), empty, false);
+        getShipTexture().render(sb, getPosition(), weaponArrayList, false);
     }
 }
