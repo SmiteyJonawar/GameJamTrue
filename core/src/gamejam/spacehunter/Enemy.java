@@ -1,17 +1,45 @@
 package gamejam.spacehunter;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
 public class Enemy extends AbstractShip {
 
-    public static Enemy bigEnemy(){
+    public static Enemy bigEnemy(Texture ship, int x, int y){
         Enemy e = new Enemy();
         e.setName("Booette");
         e.setMaxHP(20);
         e.setHP(e.getMaxHP());
         e.setSpeed(2);
+
+        e.texture = ship;
+
+        e.setPosX(x);
+        e.setPosY(y);
+
+        e.setWidth(ship.getWidth()/4);
+        e.setHeight(ship.getHeight()/4);
+
+        return e;
+    }
+
+    public static Enemy smallEnemy(Texture ship, int x, int y){
+        Enemy e = new Enemy();
+        e.setName("Booette");
+        e.setMaxHP(5);
+        e.setHP(e.getMaxHP());
+        e.setSpeed(1);
+
+        e.texture = ship;
+
+        e.setPosX(x);
+        e.setPosY(y);
+
+        e.setWidth(ship.getWidth()/4);
+        e.setHeight(ship.getHeight()/4);
+
         return e;
     }
 
@@ -38,6 +66,6 @@ public class Enemy extends AbstractShip {
 
     @Override
     public void render(SpriteBatch sb) {
-
+        sb.draw(texture, this.getPosX(), this.getPosY(), getWidth(), getHeight());
     }
 }

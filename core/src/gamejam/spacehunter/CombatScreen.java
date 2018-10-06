@@ -7,6 +7,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.badlogic.gdx.Input.Keys.NUM_1;
 
 public class CombatScreen implements Screen {
@@ -52,7 +55,14 @@ public class CombatScreen implements Screen {
             }
             batch.begin();
             player.render(batch);
+
+            for (Enemy e: world.getEnemyList()){
+                e.render(batch);
+            }
             batch.end();
+
+
+
             updateEntities();
         }
     }
