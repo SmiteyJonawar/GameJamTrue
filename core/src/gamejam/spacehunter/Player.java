@@ -4,8 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
+<<<<<<< Updated upstream
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+=======
+import gamejam.spacehunter.Weapons.Weapon;
+>>>>>>> Stashed changes
 import gamejam.spacehunter.cards.CannonBlaze;
 import gamejam.spacehunter.cards.LightShower;
 import gamejam.spacehunter.cards.LightningBolt;
@@ -19,6 +23,7 @@ public class Player extends AbstractShip{
 
 
     public HashMap<Integer, AbstractCard> cards = new HashMap<Integer, AbstractCard>();
+    public ArrayList<Weapon> weaponArrayList = new ArrayList<Weapon>();
 
     public Player(){
 
