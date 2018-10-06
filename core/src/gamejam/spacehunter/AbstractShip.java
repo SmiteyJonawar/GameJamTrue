@@ -2,6 +2,7 @@ package gamejam.spacehunter;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ public abstract class AbstractShip {
     protected int ID = 0;
     private float posX;
     private float posY;
+    private int height;
+    private int width;
     public Texture texture;
 
     public static int GetID()
@@ -108,5 +111,22 @@ public abstract class AbstractShip {
     public void setPosY(float posY) {
         this.posY = posY;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
     public abstract  void render(SpriteBatch sb);
 }

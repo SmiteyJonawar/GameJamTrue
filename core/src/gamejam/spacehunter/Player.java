@@ -1,22 +1,17 @@
 package gamejam.spacehunter;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
-<<<<<<< Updated upstream
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-=======
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import gamejam.spacehunter.Weapons.Weapon;
->>>>>>> Stashed changes
 import gamejam.spacehunter.cards.CannonBlaze;
 import gamejam.spacehunter.cards.LightShower;
 import gamejam.spacehunter.cards.LightningBolt;
 import gamejam.spacehunter.cards.Railgun;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 public class Player extends AbstractShip{
@@ -37,6 +32,13 @@ public class Player extends AbstractShip{
         this.Attacking = false;
         fillInventory();
         texture = new Texture(Gdx.files.internal("HeroShip.png"));
+
+        setWidth(texture.getWidth()/4);
+        setHeight(texture.getHeight()/4);
+
+        setPosX(100);
+        setPosY(Gdx.graphics.getHeight()/2 - getHeight()/2);
+        System.out.println(getPosY());
     }
 
     private void fillInventory(){
@@ -63,7 +65,7 @@ public class Player extends AbstractShip{
     @Override
     public void render(SpriteBatch sb) {
         {
-            sb.draw(texture, 400, 10, -texture.getWidth()/4, texture.getHeight()/4);
+            sb.draw(texture, this.getPosX() + getWidth(), this.getPosY(), -getWidth(), getHeight());
         }
     }
 }
