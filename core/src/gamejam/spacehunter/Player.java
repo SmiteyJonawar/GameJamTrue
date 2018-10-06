@@ -1,15 +1,24 @@
 package gamejam.spacehunter;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
+import gamejam.spacehunter.cards.CannonBlaze;
+import gamejam.spacehunter.cards.LightShower;
+import gamejam.spacehunter.cards.LightningBolt;
+import gamejam.spacehunter.cards.Railgun;
+
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 
 public class Player extends AbstractShip{
 
-    public float speedSonicOP = 25;
-    public float notSoFast = 14;
-    public float joji = 10;
-    //public Dictionary<KeyCode, AbstractCard> Cards = new Dictionary<KeyCode, AbstractCard>();
+
+    public HashMap<Integer, AbstractCard> cards = new HashMap<Integer, AbstractCard>();
 
     public Player(){
+
         this.MaxHP = 20;
         this.HP = 20;
         this.ID = AbstractShip.GetID();
@@ -18,16 +27,28 @@ public class Player extends AbstractShip{
         this.Name = "Space Slayer 69";
         this.Speed = 1;
         this.Attacking = false;
+        fillInventory();
 
+    }
+
+    private void fillInventory(){
+        cards.put(Keys.NUM_1, new Railgun());
+        cards.put(Keys.NUM_2, new LightningBolt());
+        cards.put(Keys.NUM_3, new LightShower());
+        cards.put(Keys.NUM_4, new CannonBlaze());
+    }
+
+    public void fireWeapon(int card, AbstractShip target){
+        Shoot(cards.get(card), target);
     }
 
     @Override
     public void Shoot(AbstractCard card, AbstractShip target) {
-        this.HP -= card.Damage;
+            target.setHP(target.getHP()-card.Damage);
     }
 
     @Override
     public void OnHit(AbstractCard card) {
-
+        this.HP -= card.Damage;
     }
 }

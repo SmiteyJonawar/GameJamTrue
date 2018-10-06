@@ -4,6 +4,15 @@ import java.util.ArrayList;
 
 public class Enemy extends AbstractShip {
 
+    public static Enemy bigEnemy(){
+        Enemy e = new Enemy();
+        e.setName("Booette");
+        e.setMaxHP(20);
+        e.setHP(e.getMaxHP());
+        e.setSpeed(2);
+        return e;
+    }
+
     public Enemy(){
         this.MaxHP = 5;
         this.HP = 5;

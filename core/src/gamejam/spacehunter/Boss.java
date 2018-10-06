@@ -1,8 +1,15 @@
 package gamejam.spacehunter;
 
-import gamejam.spacehunter.AbstractShip;
-
 public class Boss extends Enemy {
+
+    public Boss(){
+        Enemy e = new Enemy();
+        e.setMaxHP(50);
+        e.setHP(50);
+        e.setSpeed(3);
+        e.setName("Bowsette");
+    }
+
     @Override
     public void Shoot(AbstractCard card, AbstractShip target) {
         target.OnHit(card);
