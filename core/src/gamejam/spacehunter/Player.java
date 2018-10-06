@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import gamejam.spacehunter.Weapons.Weapon;
+import gamejam.spacehunter.Weapons.WeaponTexture;
 import gamejam.spacehunter.cards.CannonBlaze;
 import gamejam.spacehunter.cards.LightShower;
 import gamejam.spacehunter.cards.LightningBolt;
@@ -12,6 +14,7 @@ import gamejam.spacehunter.cards.Railgun;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Player extends AbstractShip{
 
@@ -30,14 +33,10 @@ public class Player extends AbstractShip{
         this.Speed = 1;
         this.Attacking = false;
         fillInventory();
-        texture = new Texture(Gdx.files.internal("HeroShip.png"));
 
-        setWidth(texture.getWidth()/4);
-        setHeight(texture.getHeight()/4);
+        setShipTexture(ShipFactory.createShip("heroShip"));
 
-        setPosX(100);
-        setPosY(Gdx.graphics.getHeight()/2 - getHeight()/2);
-        System.out.println(getPosY());
+        setPosition(100, Gdx.graphics.getHeight()*2 - getShipTexture().getTexture().getHeight()/2);
 
         createWeapons();
     }
@@ -75,8 +74,9 @@ public class Player extends AbstractShip{
 
     }
 
+    List<WeaponTexture> empty = new ArrayList<WeaponTexture>();
     @Override
     public void render(SpriteBatch sb) {
-        sb.draw(texture, this.getPosX() + getWidth(), this.getPosY(), -getWidth(), getHeight());
+        getShipTexture().render(sb, getPosition(), empty, true);
     }
 }

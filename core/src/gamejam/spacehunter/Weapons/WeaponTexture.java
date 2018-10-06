@@ -15,7 +15,7 @@ public class WeaponTexture {
     }
 
     public void render(SpriteBatch sb, Vector2 connectionPoint, boolean flipped){
-        if (flipped) {
+        if (!flipped) {
             sb.draw(weaponTexture, connectionPoint.x - this.connectionPoint.x, connectionPoint.y - this.connectionPoint.y,
                     weaponTexture.getWidth(), weaponTexture.getHeight());
         }else{

@@ -19,7 +19,7 @@ public class CombatScreen implements Screen {
 
     public CombatScreen() {
         OrthographicCamera cam = new OrthographicCamera();
-        cam.setToOrtho(true, 1280*4, 720*4);
+        cam.setToOrtho(false, 1280*4, 720*4);
         batch = new SpriteBatch();
         batch.setProjectionMatrix(cam.combined);
         world = new World();

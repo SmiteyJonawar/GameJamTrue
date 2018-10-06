@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class Mission {
 
     public static void StartMissionOne(World world){
-        world.getEnemyList().add(Enemy.smallEnemy(new Texture(Gdx.files.internal("SimpleUnit.png")), 1000, 360));
+        world.getEnemyList().add(Enemy.smallEnemy(ShipFactory.createShip("simpleUnit"), 4000, 1360));
     }
 
     public static void StartMissionTwo(World world){
