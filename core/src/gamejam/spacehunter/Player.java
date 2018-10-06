@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.cards.CannonBlaze;
 import gamejam.spacehunter.cards.LightShower;
@@ -39,6 +38,12 @@ public class Player extends AbstractShip{
         setPosX(100);
         setPosY(Gdx.graphics.getHeight()/2 - getHeight()/2);
         System.out.println(getPosY());
+
+        createWeapons();
+    }
+
+    private void createWeapons(){
+        weaponArrayList.add(new Weapon(new Railgun(), ))
     }
 
     private void fillInventory(){

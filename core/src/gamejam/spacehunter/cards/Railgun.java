@@ -1,5 +1,7 @@
 package gamejam.spacehunter.cards;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import gamejam.spacehunter.AbstractCard;
 
 public class Railgun extends AbstractCard {
@@ -12,5 +14,6 @@ public class Railgun extends AbstractCard {
         this.Damage = 15;
         this.Name = "Railgun";
         this.MultiHit = false;
+        texture = new Texture(Gdx.files.internal("SingleTemplate.png"));
     }
 }
