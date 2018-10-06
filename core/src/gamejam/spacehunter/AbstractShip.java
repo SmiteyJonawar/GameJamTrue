@@ -3,6 +3,7 @@ package gamejam.spacehunter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,9 @@ public abstract class AbstractShip {
     protected String Name = "Default";
     private static int IDCounter = 200;
     protected int ID = 0;
-    private float posX;
-    private float posY;
-    private int height;
-    private int width;
+    private Vector2 position = new Vector2(0,0);
     protected World world;
-    public Texture texture;
+    private ShipTexture shipTexture;
 
     public static int GetID()
     {
@@ -108,36 +106,16 @@ public abstract class AbstractShip {
         this.ID = ID;
     }
 
-    public float getPosX() {
-        return posX;
+    public void setPosition(Vector2 v){
+        position.set(v);
     }
 
-    public void setPosX(float posX) {
-        this.posX = posX;
+    public void setPosition(float x, float y){
+        position.set(x,y);
     }
 
-    public float getPosY() {
-        return posY;
-    }
-
-    public void setPosY(float posY) {
-        this.posY = posY;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
+    public Vector2 getPosition(){
+        return position;
     }
 
     public float getProcess() {
@@ -154,6 +132,14 @@ public abstract class AbstractShip {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public ShipTexture getShipTexture() {
+        return shipTexture;
+    }
+
+    public void setShipTexture(ShipTexture shipTexture) {
+        this.shipTexture = shipTexture;
     }
 
     public abstract  void render(SpriteBatch sb);

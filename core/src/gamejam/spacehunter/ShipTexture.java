@@ -2,6 +2,7 @@ package gamejam.spacehunter;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import gamejam.spacehunter.Weapons.WeaponTexture;
 
@@ -19,14 +20,18 @@ public class ShipTexture {
         this.connectionPoints = connectionPoints;
     }
 
+    public Texture getTexture(){
+        return shipTexture;
+    }
+
     public void render(SpriteBatch sb, Vector2 pos, List<WeaponTexture> weaponTextures, boolean flipped){
 
         if (weaponTextures.size() > connectionPoints.size()){
             throw new IllegalArgumentException("More weapons than connection points!");
         }
 
-        if (flipped) {
-            sb.draw(shipTexture, pos.x, pos.y, shipTexture.getWidth(), shipTexture.getHeight());
+        if (!flipped) {
+            sb.draw(shipTexture, pos.x, pos.y);
         }else {
             sb.draw(shipTexture, pos.x + shipTexture.getWidth(), pos.y, -shipTexture.getWidth(), shipTexture.getHeight());
         }
