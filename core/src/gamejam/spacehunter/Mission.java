@@ -23,7 +23,8 @@ public class Mission {
     public static void StartMissionFour(World world){
         //world.getEnemyList().add(Enemy.bigEnemy());
         //world.getEnemyList().add(Enemy.bigEnemy());
-        //world.getEnemyList().add(new Boss());
+
+        world.getEnemyList().add(Enemy.bigEnemy(ShipFactory.createShip("finalBoss"), 4000, 1360));
 
     }
 }

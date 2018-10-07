@@ -31,7 +31,8 @@ public class CombatScreen implements Screen {
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(cam.combined);
         world = new World();
-        Mission.StartMissionOne(world);
+        //Mission.StartMissionOne(world);
+        Mission.StartMissionFour(world);
         for (Enemy e : world.getEnemyList()) {
             e.setWorld(world);
         }

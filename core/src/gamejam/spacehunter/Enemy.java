@@ -4,25 +4,28 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
-import gamejam.spacehunter.Weapons.WeaponTexture;
 import gamejam.spacehunter.cards.CardFactory;
 import gamejam.spacehunter.cards.CardTypeEnum;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Enemy extends AbstractShip {
 
     public static Enemy bigEnemy(ShipTexture ship, int x, int y){
         Enemy e = new Enemy();
         e.setName("Booette");
-        e.setMaxHP(20);
+        e.setMaxHP(300);
         e.setHP(e.getMaxHP());
-        e.setSpeed(2);
+        e.setSpeed(3);
 
         e.setShipTexture(ship);
 
         e.setPosition(x, y);
+
+        e.weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Flashcannon), WeaponFactory.createTexture("flashCannon"), 0, 0));
+        e.weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.GatlingGun), WeaponFactory.createTexture("gatlingGun"), 0, 0));
+        e.weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Sniper), WeaponFactory.createTexture("sniper"), 0, 0));
+        e.weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleJimmy), WeaponFactory.createTexture("doubleJimmy"), 0, 0));
 
         return e;
     }

@@ -54,7 +54,7 @@ public class CardFactory {
                 aCard.cardTexture = new Texture(Gdx.files.internal("SingleTemplate.png"));
                 //aCard.weaponTexture = new Texture(Gdx.files.internal("FlashCannon.png"));
                 return aCard;
-            case GattlingGun:
+            case GatlingGun:
                 aCard.Damage = 8;
                 aCard.CastTime = 1.5f;
                 aCard.Cooldown = 0;
