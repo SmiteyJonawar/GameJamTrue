@@ -13,6 +13,7 @@ public class AbstractCard {
     public String Name;
     public Texture cardTexture;
 
+
     private static int IdCounter = 100;
 
     public static int GetID()
@@ -30,7 +31,6 @@ public class AbstractCard {
     }
 
     public void charge(){
-        System.out.println("charge");
         currentTime+=0.05f;
     }
 

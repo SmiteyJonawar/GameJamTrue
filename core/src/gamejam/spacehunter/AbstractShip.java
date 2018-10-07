@@ -2,6 +2,7 @@ package gamejam.spacehunter;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -12,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractShip {
-    protected float processATB = 100;
+    protected BitmapFont font = new BitmapFont();
+    protected BitmapFont font2 = new BitmapFont();
+    protected float processATB = 500;
     protected float HP = 10;
     protected float MaxHP = 10;
     protected float Initiative = 1;
@@ -28,6 +31,8 @@ public abstract class AbstractShip {
     protected World world;
     private ShipTexture shipTexture;
     public ArrayList<Weapon> weaponArrayList = new ArrayList<Weapon>();
+    public AbstractCard card;
+    public AbstractShip target;
 
     public static int GetID()
     {
@@ -144,6 +149,14 @@ public abstract class AbstractShip {
         return readyToAttack;
     }
 
+    public void fireIfReady(){
+        card.charge();
+        if(card.fullyCharged()){
+            Shoot(card,target);
+
+        }
+    }
+
     public void setReadyToAttack(boolean readyToAttack) {
         this.readyToAttack = readyToAttack;
     }
@@ -157,6 +170,19 @@ public abstract class AbstractShip {
     }
 
     public void render(ShapeRenderer sr, SpriteBatch sb){
+        font.getData().setScale(10);
+        font2.getData().setScale(10);
+        font2.setColor(Color.CYAN);
+        font.draw(sb, (int)((getInitiative()/processATB)*100) + "%", position.x, position.y);
+
+        if(card != null){
+
+            font2.draw(sb, (int)((card.currentTime/card.CastTime)*100) + "%", position.x + 500, position.y);
+        }
+        else{
+            font2.draw(sb, "0%", position.x+ 500, position.y);
+        }
+
         sb.end();
         sr.begin(ShapeRenderer.ShapeType.Filled);
         int HPWidth = 1000;

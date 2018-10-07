@@ -17,19 +17,17 @@ import java.util.List;
 
 public class Player extends AbstractShip{
 
-    public AbstractCard card;
-    public AbstractShip target;
     public HashMap<Integer, AbstractCard> cards = new HashMap<Integer, AbstractCard>();
 
     public Player(){
 
-        this.MaxHP = 20;
-        this.HP = 20;
+        this.MaxHP = 200;
+        this.HP = 200;
         this.ID = AbstractShip.GetID();
         this.Initiative = 0;
         this.Iventory = new ArrayList<AbstractCard>();
         this.Name = "Space Slayer 69";
-        this.Speed = 1;
+        this.Speed = 3;
         this.Attacking = false;
 
         setShipTexture(ShipFactory.createShip("heroShip"));
@@ -40,8 +38,8 @@ public class Player extends AbstractShip{
     }
 
     private void createWeapons(){
-        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.BigBertha), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Blaster), WeaponFactory.createTexture("blaster"), 4*2*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Missle), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Blaster), WeaponFactory.createTexture("doubleJimmy"), 4*2*Gdx.graphics.getWidth()/6, 100));
         //weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleBlaster), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
         //weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleJimmy), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
     }
@@ -51,13 +49,6 @@ public class Player extends AbstractShip{
         this.target = target;
         readyToAttack = false;
         setAttacking(true);
-    }
-
-    public void fireIfReady(){
-        card.charge();
-        if(card.fullyCharged()){
-            Shoot(card,target);
-        }
     }
 
     @Override
