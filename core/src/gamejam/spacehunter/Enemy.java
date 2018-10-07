@@ -33,7 +33,6 @@ public class Enemy extends AbstractShip {
         e.setMaxHP(51);
         e.setHP(e.getMaxHP());
         e.setSpeed(4);
-
         e.setShipTexture(ship);
 
         e.setPosition(x, y);
