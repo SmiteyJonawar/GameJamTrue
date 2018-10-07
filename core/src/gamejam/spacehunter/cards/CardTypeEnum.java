@@ -7,7 +7,7 @@ public enum CardTypeEnum {
     DoubleJimmy,
     Flashcannon,
     GattlingGun,
-    Missle,
+    Missile,
     Sniper
 
 }

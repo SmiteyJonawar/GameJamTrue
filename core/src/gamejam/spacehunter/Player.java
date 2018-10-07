@@ -1,19 +1,14 @@
 package gamejam.spacehunter;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
-import gamejam.spacehunter.Weapons.WeaponTexture;
 import gamejam.spacehunter.cards.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Player extends AbstractShip{
 
@@ -38,8 +33,8 @@ public class Player extends AbstractShip{
     }
 
     private void createWeapons(){
-        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Missle), WeaponFactory.createTexture("doubleJimmy"), 4*Gdx.graphics.getWidth()/6, 100));
-        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Blaster), WeaponFactory.createTexture("doubleJimmy"), 4*2*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Missile), WeaponFactory.createTexture("missile"), 4*Gdx.graphics.getWidth()/6, 100));
+        weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Blaster), WeaponFactory.createTexture("blaster"), 4*2*Gdx.graphics.getWidth()/6, 100));
         //weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleBlaster), WeaponFactory.createTexture("doubleJimmy"), 4*3*Gdx.graphics.getWidth()/6, 100));
         //weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.DoubleJimmy), WeaponFactory.createTexture("doubleJimmy"), 16*Gdx.graphics.getWidth()/6, 100));
     }
