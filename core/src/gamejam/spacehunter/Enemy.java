@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
+import gamejam.spacehunter.cards.CardFactory;
+import gamejam.spacehunter.cards.CardTypeEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class Enemy extends AbstractShip {
 
         e.setPosition(x, y);
 
-        e.weaponArrayList.add(new Weapon(null, WeaponFactory.createTexture("flashCannon"), 0, 0));
+        e.weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.BigBertha), WeaponFactory.createTexture("bigBertha"), 0, 0));
 
         return e;
     }

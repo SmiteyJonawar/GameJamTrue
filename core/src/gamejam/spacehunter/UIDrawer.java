@@ -9,26 +9,49 @@ import gamejam.spacehunter.Weapons.Weapon;
 public class UIDrawer {
 
     World world;
+    BitmapFont font;
 
     public UIDrawer(World world){
         this.world = world;
+        font = new BitmapFont();
+        font.setColor(Color.BLACK);
+        font.getData().setScale(4);
     }
 
     public void drawCards(SpriteBatch batch){
-        BitmapFont font = new BitmapFont();
-        font.setColor(Color.BLACK);
-        font.getData().setScale(4);;
         for (Weapon w: world.getPlayer().weaponArrayList) {
-            Texture texture =  w.getEquippedCard().cardTexture;
-            Texture wTexture = w.getEquippedCard().weaponTexture;
-            batch.draw(texture, w.getPosX(), w.getPosY(), 0.5f*texture.getWidth(), 0.5f*texture.getHeight());
-            batch.draw(wTexture, w.getPosX()+wTexture.getWidth()/2, w.getPosY()+(wTexture.getHeight()/2),
-                    wTexture.getWidth(), wTexture.getHeight());
-            font.draw(batch, w.getEquippedCard().Name, w.getPosX()+(1092/6)-100, w.getPosY()+(700));
-            font.draw(batch, w.getEquippedCard().Damage+"", w.getPosX()+(1092/6)-60, w.getPosY()+(585));
-            font.draw(batch, w.getEquippedCard().CastTime+"", w.getPosX()+(1092/6)-60, w.getPosY()+(485));
-            font.draw(batch, w.getEquippedCard().Cooldown+"", w.getPosX()+(1092/6)-60, w.getPosY()+(385));
+            renderCard(batch, w);
         }
-       font.dispose();
+    }
+
+    public void renderCard(SpriteBatch batch, Weapon weapon){
+        Texture cardTexture =  weapon.getEquippedCard().cardTexture;
+        Texture wTexture = weapon.getWeaponTexture().getTexture();
+        batch.draw(cardTexture, weapon.getPosX(), weapon.getPosY(), 0.5f*cardTexture.getWidth(), 0.5f*cardTexture.getHeight());
+
+        int boxWidth = 420;
+        int boxHeight = 220;
+
+        float widthRatio = weapon.getWeaponTexture().getTexture().getWidth()/(float)boxWidth;
+        float heightRatio = weapon.getWeaponTexture().getTexture().getHeight()/(float)boxHeight;
+
+        int finalWidth;
+        int finalHeight;
+        if (widthRatio > heightRatio){
+            finalWidth = (int) (weapon.getWeaponTexture().getTexture().getWidth()/widthRatio);
+            finalHeight = (int) (weapon.getWeaponTexture().getTexture().getHeight()/widthRatio);
+        }else{
+            finalWidth = (int) (weapon.getWeaponTexture().getTexture().getWidth()/heightRatio);
+            finalHeight = (int) (weapon.getWeaponTexture().getTexture().getHeight()/heightRatio);
+        }
+
+        batch.draw(wTexture, weapon.getPosX()+60, weapon.getPosY()+55,
+                finalWidth, finalHeight);
+
+
+        font.draw(batch, weapon.getEquippedCard().Name, weapon.getPosX()+(1092/6)-100, weapon.getPosY()+(700));
+        font.draw(batch, weapon.getEquippedCard().Damage+"", weapon.getPosX()+(1092/6)-60, weapon.getPosY()+(585));
+        font.draw(batch, weapon.getEquippedCard().CastTime+"", weapon.getPosX()+(1092/6)-60, weapon.getPosY()+(485));
+        font.draw(batch, weapon.getEquippedCard().Cooldown+"", weapon.getPosX()+(1092/6)-60, weapon.getPosY()+(385));
     }
 }

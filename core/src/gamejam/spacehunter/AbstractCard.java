@@ -12,7 +12,6 @@ public class AbstractCard {
     public boolean MultiHit;
     public String Name;
     public Texture cardTexture;
-    public Texture weaponTexture;
 
     private static int IdCounter = 100;
 
