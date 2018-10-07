@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -73,14 +74,26 @@ public class CombatScreen implements Screen {
             }
         }  if (world.getPlayer().isAttacking()) {
             world.getPlayer().fireIfReady();
+            for (Enemy e : world.getEnemyList()) {
+                if (e.isReadyToAttack()) {
+                    e.attack();
+                } else if(e.isAttacking()) {
+                    e.fireIfReady();
+                } else {
+                    e.updateProcess();
+                }
+
+            }
+
 
         }
         if (gameRunning && !world.getPlayer().readyToAttack) {
-
             world.getPlayer().updateProcess();
             for (Enemy e : world.getEnemyList()) {
                 if (e.isReadyToAttack()) {
                     e.attack();
+                } else if(e.isAttacking()) {
+                    e.fireIfReady();
                 } else {
                     e.updateProcess();
                 }
@@ -101,7 +114,6 @@ public class CombatScreen implements Screen {
 
         for (Enemy e : world.getEnemyList()) {
             e.render(shapeRenderer, batch);
-            e.updateProcess();
         }
 
         world.getPlayer().render(shapeRenderer, batch);

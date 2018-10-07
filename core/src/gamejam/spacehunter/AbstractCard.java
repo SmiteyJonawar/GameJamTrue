@@ -14,6 +14,7 @@ public class AbstractCard {
     public Texture cardTexture;
     public Texture weaponTexture;
 
+
     private static int IdCounter = 100;
 
     public static int GetID()
@@ -31,7 +32,6 @@ public class AbstractCard {
     }
 
     public void charge(){
-        System.out.println("charge");
         currentTime+=0.05f;
     }
 

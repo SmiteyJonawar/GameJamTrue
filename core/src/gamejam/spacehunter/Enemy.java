@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import gamejam.spacehunter.Weapons.Weapon;
 import gamejam.spacehunter.Weapons.WeaponFactory;
 import gamejam.spacehunter.Weapons.WeaponTexture;
+import gamejam.spacehunter.cards.CardFactory;
+import gamejam.spacehunter.cards.CardTypeEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +30,15 @@ public class Enemy extends AbstractShip {
     public static Enemy smallEnemy(ShipTexture ship, int x, int y){
         Enemy e = new Enemy();
         e.setName("Booette");
-        e.setMaxHP(50);
+        e.setMaxHP(51);
         e.setHP(e.getMaxHP());
-        e.setSpeed(1);
+        e.setSpeed(4);
 
         e.setShipTexture(ship);
 
         e.setPosition(x, y);
 
-        e.weaponArrayList.add(new Weapon(null, WeaponFactory.createTexture("flashCannon"), 0, 0));
+        e.weaponArrayList.add(new Weapon(CardFactory.create(CardTypeEnum.Flashcannon), WeaponFactory.createTexture("flashCannon"), 0, 0));
 
         return e;
     }
@@ -47,14 +49,18 @@ public class Enemy extends AbstractShip {
         this.ID = AbstractShip.GetID();
         this.Initiative = 0;
         this.Iventory = new ArrayList<AbstractCard>();
+
         this.Name = "Noosey";
-        this.Speed = 1;
+        this.Speed = 4;
         this.Attacking = false;
     }
 
     @Override
     public void Shoot(AbstractCard card, AbstractShip target) {
-        target.OnHit(card);
+        target.setHP(target.getHP()-card.Damage);
+        setInitiative(0);
+        readyToAttack = false;
+        setAttacking(false);
     }
 
     @Override
@@ -64,9 +70,10 @@ public class Enemy extends AbstractShip {
 
     @Override
     public void attack() {
-        if(!Iventory.isEmpty()){
-            Shoot(Iventory.get(0),world.getPlayer());
-        }
+        setReadyToAttack(false);
+        this.card = weaponArrayList.get(0).getEquippedCard();
+        this.target = world.getPlayer();
+        setAttacking(true);
     }
 
     @Override
